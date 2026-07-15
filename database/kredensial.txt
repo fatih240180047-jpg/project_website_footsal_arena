@@ -1,0 +1,23 @@
+=======================================================
+KREDENSIAL DEFAULT - WEBSITE RESERVASI FUTSAL ARENA
+=======================================================
+
+Berikut adalah daftar akun bawaan yang bisa Anda gunakan untuk
+masuk ke sistem Futsal Arena setelah mengimpor database:
+
+1. AKUN ADMINISTRATOR (ADMIN)
+   - Email: admin@futsalarena.com
+   - Kata Sandi: rahasia123
+   - Hak Akses: Penuh (Mengelola lapangan, melihat/mengonfirmasi reservasi)
+
+2. AKUN PELANGGAN CONTOH (CUSTOMER)
+   - Email: budi@gmail.com
+   - Kata Sandi: rahasia123
+   - Hak Akses: Terbatas (Cari lapangan, lakukan reservasi, riwayat transaksi)
+
+-------------------------------------------------------
+Catatan Keamanan:
+- Silakan ganti kata sandi ini setelah masuk pertama kali demi keamanan.
+- Kata sandi di atas disimpan di database dengan hash bcrypt valid:
+  $2y$12$AZrZhnhl7o5mjZ4P1Y6S6eJjjxH96u9h/JtaxLcbT.WqXH.QRWGsG
+=======================================================

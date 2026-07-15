@@ -14,9 +14,11 @@ class Pengguna extends Authenticatable
     protected $fillable = [
         'nama',
         'email',
+        'email_terverifikasi_pada',
         'kata_sandi',
         'no_telepon',
         'peran',
+        'remember_token',
     ];
 
     protected $hidden = [
@@ -58,6 +60,7 @@ class Pengguna extends Authenticatable
 
     /**
      * Override getAuthPassword untuk menggunakan kolom kata_sandi.
+     * Sesuai SKPL Class Diagram.
      */
     public function getAuthPassword()
     {

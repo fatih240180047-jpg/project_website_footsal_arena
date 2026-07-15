@@ -1,5 +1,5 @@
-@extends('tata_letak.utama')
-@section('judul', 'Buat Reservasi - Futsal Arena')
+@extends('tata_letak.pelanggan')
+@section('judul', 'Buat Reservasi - Footsal Arena')
 
 @section('konten')
 <a href="{{ route('pelanggan.lapangan.detail', ['lapangan' => $lapangan->id, 'tanggal' => $tanggal]) }}">&larr; Kembali ke Detail Lapangan</a>
@@ -83,3 +83,4 @@
 </script>
 @endpush
 @endsection
+

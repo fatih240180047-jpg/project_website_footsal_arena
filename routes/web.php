@@ -11,8 +11,13 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// Halaman utama - arahkan ke halaman masuk
+// Halaman utama - arahkan ke halaman masuk atau dashboard jika sudah login
 Route::get('/', function () {
+    if (auth()->check()) {
+        return auth()->user()->peran === 'admin' 
+            ? redirect()->route('admin.dashboard') 
+            : redirect()->route('pelanggan.lapangan.index');
+    }
     return redirect()->route('autentikasi.masuk');
 });
 

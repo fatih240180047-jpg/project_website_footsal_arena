@@ -23,19 +23,22 @@ class AutentikasiController extends Controller
     public function prosesMasuk(Request $request)
     {
         $kredensial = $request->validate([
-            'email' => 'required|email',
-            'kata_sandi' => 'required',
+            'email'    => 'required|email',
+            'password' => 'required',
         ], [
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'kata_sandi.required' => 'Kata sandi wajib diisi.',
+            'email.required'    => 'Username wajib diisi.',
+            'email.email'       => 'Format username tidak valid.',
+            'password.required' => 'Password wajib diisi.',
         ]);
 
-        // Mapping ke field yang digunakan Laravel Auth
-        if (Auth::attempt(['email' => $kredensial['email'], 'password' => $kredensial['kata_sandi']], $request->boolean('ingat_saya'))) {
-            $request->session()->regenerate();
+        // Cari pengguna berdasarkan email
+        $pengguna = Pengguna::where('email', $kredensial['email'])->first();
 
-            $pengguna = Auth::user();
+        // Verifikasi password ke kolom kata_sandi via getAuthPassword()
+        // (tidak menggunakan $pengguna->kata_sandi langsung karena cast 'hashed' dapat mendistorsi nilai)
+        if ($pengguna && Hash::check($kredensial['password'], $pengguna->getAuthPassword())) {
+            Auth::login($pengguna, $request->boolean('ingat_saya'));
+            $request->session()->regenerate();
 
             if ($pengguna->peran === 'admin') {
                 return redirect()->route('admin.dashboard')->with('sukses', 'Selamat datang, ' . $pengguna->nama . '!');
@@ -45,7 +48,7 @@ class AutentikasiController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Email atau kata sandi salah.',
+            'email' => 'Username atau password salah.',
         ])->onlyInput('email');
     }
 

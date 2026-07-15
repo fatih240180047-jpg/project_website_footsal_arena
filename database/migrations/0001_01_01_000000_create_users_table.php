@@ -32,7 +32,8 @@ return new class extends Migration
         // Tabel sesi menggunakan nama kolom standar Laravel
         Schema::create('sesi', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
+            $table->unsignedBigInteger('user_id')->nullable()->index(); // FK → pengguna.id
+            $table->foreign('user_id')->references('id')->on('pengguna')->onDelete('set null');
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');

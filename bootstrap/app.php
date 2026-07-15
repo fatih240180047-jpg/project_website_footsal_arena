@@ -14,6 +14,15 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'cek.peran' => \App\Http\Middleware\CekPeran::class,
         ]);
+        
+        $middleware->redirectUsersTo(function () {
+            if (auth()->check()) {
+                return auth()->user()->peran === 'admin' 
+                    ? route('admin.dashboard') 
+                    : route('pelanggan.lapangan.index');
+            }
+            return '/';
+        });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

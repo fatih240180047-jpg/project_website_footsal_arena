@@ -53,7 +53,7 @@ class ReservasiController extends Controller
 
         $reservasi->update(['status' => 'dikonfirmasi']);
 
-        return redirect()->route('admin.reservasi.index')->with('sukses', 'Reservasi berhasil dikonfirmasi.');
+        return redirect()->route('admin.dashboard')->with('sukses', 'Reservasi berhasil dikonfirmasi.');
     }
 
     /**
@@ -72,7 +72,7 @@ class ReservasiController extends Controller
             'keterangan' => $keterangan,
         ]);
 
-        return redirect()->route('admin.reservasi.index')->with('sukses', 'Reservasi berhasil dibatalkan.');
+        return redirect()->route('admin.dashboard')->with('sukses', 'Reservasi berhasil dibatalkan.');
     }
 
     /**

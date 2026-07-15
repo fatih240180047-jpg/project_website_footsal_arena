@@ -130,6 +130,6 @@ class ReservasiController extends Controller
 
         $reservasi->update(['status' => 'dibatalkan']);
 
-        return redirect()->route('pelanggan.reservasi.index')->with('sukses', 'Reservasi berhasil dibatalkan.');
+        return back()->with('sukses', 'Reservasi berhasil dibatalkan.');
     }
 }
